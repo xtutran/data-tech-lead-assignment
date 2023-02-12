@@ -1,0 +1,10 @@
+version: '3.1'
+
+services:
+  summary:
+    build: ./summary
+    container_name: summary
+    volumes:
+      - ./data:/app/data
+    env_file:
+      - .env

@@ -1,0 +1,46 @@
+version: '3.1'
+
+services:
+  db:
+    image: mysql:8.0
+    cap_add:
+      - SYS_NICE
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - db:/var/lib/mysql
+      - ./schema/init.sql:/docker-entrypoint-initdb.d/create_tables.sql:ro
+    env_file:
+      - .env
+
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  load_csv:
+    build: ./load
+    container_name: load_csv
+    depends_on:
+      - db
+    volumes:
+      - ./data:/app/data:ro
+    env_file:
+      - .env
+
+  summary:
+    build: ./summary
+    container_name: summary
+    depends_on:
+      - load_csv
+    volumes:
+      - ./data:/app/data
+    env_file:
+      - .env
+
+volumes:
+  db:
+    driver: local

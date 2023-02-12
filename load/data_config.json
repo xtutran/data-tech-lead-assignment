@@ -1,0 +1,14 @@
+[
+  {
+    "table": "people",
+    "input_path": "./data/people.csv",
+    "header": "true",
+    "infer_schema": "true"
+  },
+  {
+    "table": "places",
+    "input_path": "./data/places.csv",
+    "header": "true",
+    "infer_schema": "true"
+  }
+]
