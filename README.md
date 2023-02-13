@@ -43,7 +43,7 @@
 
 ```mermaid
 erDiagram
-    people }|--|| places : has_city_in
+    people }|--|| places : place_of_birth_IN_city
     people {
         int    id FK "Auto increment"
         string given_name
