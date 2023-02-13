@@ -39,6 +39,28 @@
 
 ## 3. How to run?
 
+- <b>Entity Relationship Diagram</b>
+
+```mermaid
+erDiagram
+    people }|--|| places : has_city_in
+    people {
+        int    id FK "Auto increment"
+        string given_name
+        string family_name
+        date   date_of_birth
+        string place_of_birth
+    }
+    
+    places {
+        int    id FK "Auto increment"
+        string city
+        string county
+        string country
+    }
+```
+
+
 - <b>Step 1&2:</b> Stand-up `Mysql` server - run `schema/init.sql` to create database schema - run `load data` pyspark job to ingest `data/people.csv` and `data/places.csv` to Mysql
 ```bash
 make up_db_load_data
